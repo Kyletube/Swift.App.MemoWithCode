@@ -9,12 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var mainImageView: UIImageView = {
+    // 메인화면 이미지
+    private let mainImageView: UIImageView = {
         let imageV = UIImageView(image: UIImage(named: "MemoImage"))
         imageV.contentMode = .scaleAspectFit
         return imageV
     }()
     
+    // 할 일 보기 버튼
     private lazy var mainTodoButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.backgroundColor = .systemYellow
@@ -26,6 +28,7 @@ class ViewController: UIViewController {
         return bt
     }()
     
+     // 완료한 일 보기 버튼
     private lazy var mainCompleteButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.backgroundColor = .orange
@@ -37,7 +40,8 @@ class ViewController: UIViewController {
         return bt
     }()
     
-    var mainStackView: UIStackView = {
+    // 위의 3가지를 묶은 스택뷰
+    private let mainStackView: UIStackView = {
         let st = UIStackView()
         st.spacing = 20
         st.axis = .vertical
@@ -48,22 +52,27 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeUI()
+        setUI()
+        setConstraints()
     }
     
-    func makeUI() {
+    // UI 설정
+    func setUI() {
         view.backgroundColor = .systemGray6
-        
-        view.addSubview(mainStackView)
-        mainStackView.addArrangedSubview(mainImageView)
-        mainStackView.addArrangedSubview(mainTodoButton)
-        mainStackView.addArrangedSubview(mainCompleteButton)
         
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainImageView.translatesAutoresizingMaskIntoConstraints = false
         mainTodoButton.translatesAutoresizingMaskIntoConstraints = false
         mainCompleteButton.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(mainStackView)
+        mainStackView.addArrangedSubview(mainImageView)
+        mainStackView.addArrangedSubview(mainTodoButton)
+        mainStackView.addArrangedSubview(mainCompleteButton)
+    }
+    
+    // UI제약 설정
+    func setConstraints() {
         NSLayoutConstraint.activate([
             mainStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mainStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -80,6 +89,7 @@ class ViewController: UIViewController {
         ])
     }
     
+    // 할 일 보기 버튼 눌렀을때 작동하는 함수
     @objc func todoButtonTapped() {
         let todoViewController = TodoViewController()
         let navigationController = UINavigationController(rootViewController: todoViewController)
