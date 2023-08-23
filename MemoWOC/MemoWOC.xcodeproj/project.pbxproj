@@ -13,6 +13,7 @@
 		279042A72A95CD31004206C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279042A52A95CD31004206C2 /* Main.storyboard */; };
 		279042A92A95CD33004206C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 279042A82A95CD33004206C2 /* Assets.xcassets */; };
 		279042AC2A95CD33004206C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279042AA2A95CD33004206C2 /* LaunchScreen.storyboard */; };
+		279042D42A96162A004206C2 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279042D32A96162A004206C2 /* TodoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		279042A82A95CD33004206C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		279042AB2A95CD33004206C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		279042AD2A95CD33004206C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		279042D32A96162A004206C2 /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				2790429F2A95CD31004206C2 /* AppDelegate.swift */,
 				279042A12A95CD31004206C2 /* SceneDelegate.swift */,
 				279042A32A95CD31004206C2 /* ViewController.swift */,
+				279042D32A96162A004206C2 /* TodoViewController.swift */,
 				279042A52A95CD31004206C2 /* Main.storyboard */,
 				279042A82A95CD33004206C2 /* Assets.xcassets */,
 				279042AA2A95CD33004206C2 /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				279042D42A96162A004206C2 /* TodoViewController.swift in Sources */,
 				279042A42A95CD31004206C2 /* ViewController.swift in Sources */,
 				279042A02A95CD31004206C2 /* AppDelegate.swift in Sources */,
 				279042A22A95CD31004206C2 /* SceneDelegate.swift in Sources */,
