@@ -12,16 +12,19 @@ class TodoViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var memoList: [String] = ["메모 1", "메모 2", "메모 3"]
     
     let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UITableView())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
         setupTableView()
+        setConstraints()
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     func setupTableView() {
@@ -31,7 +34,9 @@ class TodoViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.register(MemoCell.self, forCellReuseIdentifier: "MemoCell")
         
         view.addSubview(tableView)
-        
+    }
+    
+    func setConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -40,6 +45,36 @@ class TodoViewController: UIViewController, UITableViewDataSource, UITableViewDe
         ])
     }
     
+    @objc func addButtonTapped() {
+        // 추가 버튼을 눌렀을 때 실행되는 코드
+        showAlertToAddMemo()
+    }
+    
+    func showAlertToAddMemo() {
+        let alertController = UIAlertController(title: "메모 추가", message: "새로운 메모를 입력하세요", preferredStyle: .alert)
+        
+        alertController.addTextField { textField in
+            textField.placeholder = "메모 내용"
+        }
+        
+        let addAction = UIAlertAction(title: "추가", style: .default) { _ in
+            if let memoText = alertController.textFields?.first?.text {
+                self.addMemoToList(memoText)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alertController.addAction(addAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+
+    func addMemoToList(_ memo: String) {
+        memoList.append(memo)
+        tableView.reloadData()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memoList.count
@@ -47,34 +82,12 @@ class TodoViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as! MemoCell
-        cell.memoLabel.text = memoList[indexPath.row]
+        configureCell(cell, at: indexPath)
         return cell
     }
-}
 
-class MemoCell: UITableViewCell {
-    
-    let memoLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        contentView.addSubview(memoLabel)
-        
-        NSLayoutConstraint.activate([
-            memoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            memoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            memoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            memoLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
-        ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func configureCell(_ cell: MemoCell, at indexPath: IndexPath) {
+        cell.memoLabel.text = memoList[indexPath.row]
     }
 }
 

@@ -30,10 +30,9 @@ class ViewController: UIViewController {
     // 할 일 보기 버튼 눌렀을때 작동하는 함수
     @objc func todoButtonTapped() {
         let todoViewController = TodoViewController()
-        let navigationController = UINavigationController(rootViewController: todoViewController)
-        navigationController.modalPresentationStyle = .pageSheet
-        present(navigationController, animated: true, completion: nil)
+        navigationController?.pushViewController(todoViewController, animated: true)
     }
+
     
     @objc func completeButtonTapped() {
         

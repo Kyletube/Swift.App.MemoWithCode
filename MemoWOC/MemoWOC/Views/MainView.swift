@@ -29,24 +29,22 @@ class MainView: UIView {
     
      // 완료한 일 보기 버튼
     let mainCompleteButton: UIButton = {
-        let bt = UIButton(type: .custom)
-        bt.backgroundColor = .orange
-        bt.layer.cornerRadius = 8
-        bt.clipsToBounds = true
-        bt.setTitle("완료한 일 보기", for: .normal)
-        bt.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        $0.backgroundColor = .orange
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.setTitle("완료한 일 보기", for: .normal)
+        $0.titleLabel?.font = .boldSystemFont(ofSize: 16)
 //        bt.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
-        return bt
-    }()
+        return $0
+    }(UIButton(type: .custom))
     
     // 위의 3가지를 묶은 스택뷰
     private let mainStackView: UIStackView = {
-        let st = UIStackView()
-        st.spacing = 20
-        st.axis = .vertical
-        st.alignment = .center
-        return st
-    }()
+        $0.spacing = 20
+        $0.axis = .vertical
+        $0.alignment = .center
+        return $0
+    }(UIStackView())
     
     override init(frame: CGRect) {
         super.init(frame: frame)
