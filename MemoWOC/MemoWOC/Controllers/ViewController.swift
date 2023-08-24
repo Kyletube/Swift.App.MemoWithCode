@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setUpAddTarget()
+        setBackBar()
     }
     
     func setUpAddTarget() {
@@ -27,15 +28,21 @@ class ViewController: UIViewController {
         mainView.mainCompleteButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
     }
     
+    func setBackBar() {
+        let backBarButtonItem = UIBarButtonItem(title: "뒤로가기", style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .systemYellow
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+    }
+    
     // 할 일 보기 버튼 눌렀을때 작동하는 함수
     @objc func todoButtonTapped() {
-        let todoViewController = TodoViewController()
-        navigationController?.pushViewController(todoViewController, animated: true)
+        let todoVC = TodoViewController()
+        navigationController?.pushViewController(todoVC, animated: true)
     }
-
     
     @objc func completeButtonTapped() {
-        
+        let completeVC = CompleteViewController()
+        navigationController?.pushViewController(completeVC, animated: true)
     }
 }
 

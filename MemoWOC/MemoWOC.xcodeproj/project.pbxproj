@@ -10,6 +10,7 @@
 		270263812A973561003C3A67 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270263802A973561003C3A67 /* MemoCell.swift */; };
 		270263832A9738E1003C3A67 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270263822A9738E1003C3A67 /* Memo.swift */; };
 		270263852A9738EB003C3A67 /* MemoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270263842A9738EB003C3A67 /* MemoManager.swift */; };
+		270263872A975A0C003C3A67 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270263862A975A0C003C3A67 /* CompleteViewController.swift */; };
 		279042A02A95CD31004206C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790429F2A95CD31004206C2 /* AppDelegate.swift */; };
 		279042A22A95CD31004206C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279042A12A95CD31004206C2 /* SceneDelegate.swift */; };
 		279042A42A95CD31004206C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279042A32A95CD31004206C2 /* ViewController.swift */; };
@@ -17,13 +18,13 @@
 		279042AC2A95CD33004206C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279042AA2A95CD33004206C2 /* LaunchScreen.storyboard */; };
 		279042D42A96162A004206C2 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279042D32A96162A004206C2 /* TodoViewController.swift */; };
 		27A228C72A971F5100392AA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A228C62A971F5100392AA5 /* MainView.swift */; };
-		27B4D7B22A97320E009F02EA /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B4D7B12A97320E009F02EA /* TodoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		270263802A973561003C3A67 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		270263822A9738E1003C3A67 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		270263842A9738EB003C3A67 /* MemoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoManager.swift; sourceTree = "<group>"; };
+		270263862A975A0C003C3A67 /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
 		2790429C2A95CD31004206C2 /* MemoWOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoWOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2790429F2A95CD31004206C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		279042A12A95CD31004206C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,7 +34,6 @@
 		279042AD2A95CD33004206C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		279042D32A96162A004206C2 /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		27A228C62A971F5100392AA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		27B4D7B12A97320E009F02EA /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				27A228C62A971F5100392AA5 /* MainView.swift */,
-				27B4D7B12A97320E009F02EA /* TodoView.swift */,
 				270263802A973561003C3A67 /* MemoCell.swift */,
 			);
 			path = Views;
@@ -93,6 +92,7 @@
 			children = (
 				279042A32A95CD31004206C2 /* ViewController.swift */,
 				279042D32A96162A004206C2 /* TodoViewController.swift */,
+				270263862A975A0C003C3A67 /* CompleteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -178,7 +178,7 @@
 			files = (
 				270263812A973561003C3A67 /* MemoCell.swift in Sources */,
 				270263852A9738EB003C3A67 /* MemoManager.swift in Sources */,
-				27B4D7B22A97320E009F02EA /* TodoView.swift in Sources */,
+				270263872A975A0C003C3A67 /* CompleteViewController.swift in Sources */,
 				279042D42A96162A004206C2 /* TodoViewController.swift in Sources */,
 				270263832A9738E1003C3A67 /* Memo.swift in Sources */,
 				279042A42A95CD31004206C2 /* ViewController.swift in Sources */,
