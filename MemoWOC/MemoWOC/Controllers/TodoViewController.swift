@@ -27,6 +27,10 @@ class TodoViewController: UIViewController {
         addButton.tintColor = .systemYellow
         navigationItem.rightBarButtonItem = addButton
         
+//        let backBarButtonItem = UIBarButtonItem(title: "뒤로가기", style: .plain, target: self, action: nil)
+//        backBarButtonItem.tintColor = .systemYellow
+//        navigationItem.leftBarButtonItem = backBarButtonItem
+        
         tableView.reloadData()
         loadMemoList()
     }
@@ -97,16 +101,28 @@ class TodoViewController: UIViewController {
         
         UserDefaults.standard.set(memoDictList, forKey: "MemoListKey")
     }
-
+    
     // UserDefaults에서 메모 리스트 불러오기
     func loadMemoList() {
         if let savedMemoList = UserDefaults.standard.array(forKey: "MemoListKey") as? [[String: Any]] {
-            memoList = savedMemoList.compactMap { dict in
-                return Memo(
-                    content: dict["content"] as? String ?? "",
-                    isCompleted: dict["isCompleted"] as? Bool ?? false,
-                    category: dict["category"] as? String ?? ""
-                )
+            for memoDict in savedMemoList {
+                var content = ""
+                if let contentValue = memoDict["content"] as? String {
+                    content = contentValue
+                }
+                
+                var isCompleted = false
+                if let isCompletedValue = memoDict["isCompleted"] as? Bool {
+                    isCompleted = isCompletedValue
+                }
+                
+                var category = ""
+                if let categoryValue = memoDict["category"] as? String {
+                    category = categoryValue
+                }
+                
+                let memo = Memo(content: content, isCompleted: isCompleted, category: category)
+                memoList.append(memo)
             }
         }
     }
@@ -124,11 +140,43 @@ extension TodoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as! MemoCell
         configureCell(cell, at: indexPath)
+        
+        let memo = memoList[indexPath.row]
+        updateTextAppearance(cell, withText: memo.content, isSwitchOn: memo.isCompleted)
+        
         return cell
     }
-
+    
     func configureCell(_ cell: MemoCell, at indexPath: IndexPath) {
-        cell.memoLabel.text = memoList[indexPath.row].content
+        let memo = memoList[indexPath.row]
+        cell.memoLabel.text = memo.content
+        
+        let switchControl = UISwitch()
+        switchControl.onTintColor = .systemOrange
+        switchControl.isOn = memo.isCompleted
+        switchControl.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+        cell.accessoryView = switchControl
+    }
+    
+    func updateTextAppearance(_ cell: UITableViewCell, withText text: String, isSwitchOn: Bool) {
+        let attributeString = NSMutableAttributedString(string: text)
+        
+        if isSwitchOn {
+            attributeString.addAttribute(.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        } else {
+            attributeString.removeAttribute(.strikethroughStyle, range: NSMakeRange(0, attributeString.length))
+        }
+        
+        cell.textLabel?.attributedText = attributeString
+    }
+    
+    @objc func switchValueChanged(_ sender: UISwitch) {
+        if let cell = sender.superview as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+            memoList[indexPath.row].isCompleted = sender.isOn
+            updateTextAppearance(cell, withText: memoList[indexPath.row].content, isSwitchOn: sender.isOn)
+            saveMemoList()
+            tableView.reloadRows(at: [indexPath], with: .fade)
+        }
     }
 }
 
