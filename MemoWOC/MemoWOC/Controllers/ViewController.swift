@@ -21,6 +21,21 @@ class ViewController: UIViewController {
         
         setUpAddTarget()
         setBackBar()
+        
+        if let imageURL = URL(string: "https://cdn-icons-png.flaticon.com/128/3209/3209265.png") {
+            URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+                if let error = error {
+                    print("Error: \(error)")
+                    return
+                }
+                
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.mainView.mainImageView.image = image
+                    }
+                }
+            }.resume()
+        }
     }
     
     func setUpAddTarget() {

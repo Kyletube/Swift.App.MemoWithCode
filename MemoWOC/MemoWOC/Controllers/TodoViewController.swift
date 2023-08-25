@@ -19,7 +19,7 @@ class TodoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setAddButton()
+        setNavBar()
         setupTableView()
         setConstraints()
         
@@ -50,10 +50,14 @@ class TodoViewController: UIViewController {
         ])
     }
     
-    func setAddButton() {
+    func setNavBar() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         addButton.tintColor = .systemYellow
         navigationItem.rightBarButtonItem = addButton
+        
+        let backBarButtonItem = UIBarButtonItem(title: "뒤로가기", style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .systemYellow
+        self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
     @objc func addButtonTapped() {

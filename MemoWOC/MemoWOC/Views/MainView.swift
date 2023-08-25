@@ -10,8 +10,7 @@ import UIKit
 class MainView: UIView {
     
     // 메인화면 이미지
-    private let mainImageView: UIImageView = {
-        $0.image = UIImage(named: "MemoImage")
+    let mainImageView: UIImageView = {
         $0.contentMode = .scaleAspectFit
         return $0
     }(UIImageView())
