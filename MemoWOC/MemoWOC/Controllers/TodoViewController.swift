@@ -107,6 +107,37 @@ extension TodoViewController: UITableViewDelegate {
         let detailViewController = DetailViewController(memo: selectedMemo)
         navigationController?.pushViewController(detailViewController, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            showAlertToDeleteMemo(at: indexPath)
+        }
+    }
+    
+    func showAlertToDeleteMemo(at indexPath: IndexPath) {
+        let alertController = UIAlertController(title: "메모 삭제", message: "이 메모를 삭제하시겠습니까?", preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
+            self.deleteMemo(at: indexPath)
+            self.saveMemoList()
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteMemo(at indexPath: IndexPath) {
+        memoList.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
 }
 
 extension TodoViewController: UITableViewDataSource {

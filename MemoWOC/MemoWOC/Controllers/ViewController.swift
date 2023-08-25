@@ -45,5 +45,3 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(completeVC, animated: true)
     }
 }
-
-
