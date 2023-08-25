@@ -18,30 +18,27 @@ class TodoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         
+        setAddButton()
         setupTableView()
         setConstraints()
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        addButton.tintColor = .systemYellow
-        navigationItem.rightBarButtonItem = addButton
         
 //        let backBarButtonItem = UIBarButtonItem(title: "뒤로가기", style: .plain, target: self, action: nil)
 //        backBarButtonItem.tintColor = .systemYellow
 //        navigationItem.leftBarButtonItem = backBarButtonItem
-        
-        tableView.reloadData()
-        loadMemoList()
     }
     
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         
+        tableView.backgroundColor = .systemGray6
         tableView.register(MemoCell.self, forCellReuseIdentifier: "MemoCell")
         
         view.addSubview(tableView)
+        
+        tableView.reloadData()
+        loadMemoList()
     }
     
     func setConstraints() {
@@ -51,6 +48,12 @@ class TodoViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    func setAddButton() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .systemYellow
+        navigationItem.rightBarButtonItem = addButton
     }
     
     @objc func addButtonTapped() {
@@ -85,46 +88,15 @@ class TodoViewController: UIViewController {
         tableView.reloadData()
         saveMemoList()
     }
-
+    
     // UserDefaults에 메모 리스트 저장
     func saveMemoList() {
-        var memoDictList: [[String: Any]] = []
-        
-        for memo in memoList {
-            let memoDict: [String: Any] = [
-                "content": memo.content,
-                "isCompleted": memo.isCompleted,
-                "category": memo.category
-            ]
-            memoDictList.append(memoDict)
-        }
-        
-        UserDefaults.standard.set(memoDictList, forKey: "MemoListKey")
+        MemoManager.saveMemoList(memoList)
     }
     
     // UserDefaults에서 메모 리스트 불러오기
     func loadMemoList() {
-        if let savedMemoList = UserDefaults.standard.array(forKey: "MemoListKey") as? [[String: Any]] {
-            for memoDict in savedMemoList {
-                var content = ""
-                if let contentValue = memoDict["content"] as? String {
-                    content = contentValue
-                }
-                
-                var isCompleted = false
-                if let isCompletedValue = memoDict["isCompleted"] as? Bool {
-                    isCompleted = isCompletedValue
-                }
-                
-                var category = ""
-                if let categoryValue = memoDict["category"] as? String {
-                    category = categoryValue
-                }
-                
-                let memo = Memo(content: content, isCompleted: isCompleted, category: category)
-                memoList.append(memo)
-            }
-        }
+        memoList = MemoManager.loadMemoList()
     }
 }
 
@@ -179,5 +151,3 @@ extension TodoViewController: UITableViewDataSource {
         }
     }
 }
-
-
