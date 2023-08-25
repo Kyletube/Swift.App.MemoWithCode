@@ -102,6 +102,11 @@ class TodoViewController: UIViewController {
 
 extension TodoViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedMemo = memoList[indexPath.row]
+        let detailViewController = DetailViewController(memo: selectedMemo)
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 extension TodoViewController: UITableViewDataSource {
