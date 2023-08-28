@@ -38,7 +38,7 @@ class TodoViewController: UIViewController {
         view.addSubview(tableView)
         
         tableView.reloadData()
-        loadMemoList()
+        memoList = MemoManager.loadMemoList()
     }
     
     func setConstraints() {
@@ -74,7 +74,6 @@ class TodoViewController: UIViewController {
         let addAction = UIAlertAction(title: "추가", style: .default) { _ in
             if let memoText = alertController.textFields?.first?.text {
                 self.addMemoToList(memoText)
-                self.saveMemoList()
             }
         }
         
@@ -90,17 +89,7 @@ class TodoViewController: UIViewController {
         let newMemo = Memo(content: memoText, isCompleted: false, category: "")
         memoList.append(newMemo)
         tableView.reloadData()
-        saveMemoList()
-    }
-    
-    // UserDefaults에 메모 리스트 저장
-    func saveMemoList() {
         MemoManager.saveMemoList(memoList)
-    }
-    
-    // UserDefaults에서 메모 리스트 불러오기
-    func loadMemoList() {
-        memoList = MemoManager.loadMemoList()
     }
 }
 
@@ -127,7 +116,7 @@ extension TodoViewController: UITableViewDelegate {
         
         let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
             self.deleteMemo(at: indexPath)
-            self.saveMemoList()
+            MemoManager.saveMemoList(self.memoList)
         }
         
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -186,7 +175,7 @@ extension TodoViewController: UITableViewDataSource {
         if let cell = sender.superview as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
             memoList[indexPath.row].isCompleted = sender.isOn
             updateTextAppearance(cell, withText: memoList[indexPath.row].content, isSwitchOn: sender.isOn)
-            saveMemoList()
+            MemoManager.saveMemoList(memoList)
             tableView.reloadRows(at: [indexPath], with: .fade)
         }
     }
