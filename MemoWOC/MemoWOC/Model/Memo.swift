@@ -8,6 +8,7 @@
 import Foundation
 
 struct Memo {
+    var id: Int
     var content: String
     var isCompleted: Bool
     var category: String

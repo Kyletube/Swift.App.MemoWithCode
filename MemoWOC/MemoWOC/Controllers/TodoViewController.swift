@@ -10,6 +10,7 @@ import UIKit
 class TodoViewController: UIViewController {
     
     var memoList: [Memo] = []
+    var currentID: Int = 0
     
     let tableView: UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -86,8 +87,9 @@ class TodoViewController: UIViewController {
     }
 
     func addMemoToList(_ memoText: String) {
-        let newMemo = Memo(content: memoText, isCompleted: false, category: "")
+        let newMemo = Memo(id: currentID, content: memoText, isCompleted: false, category: "")
         memoList.append(newMemo)
+        currentID += 1
         tableView.reloadData()
         MemoManager.saveMemoList(memoList)
     }

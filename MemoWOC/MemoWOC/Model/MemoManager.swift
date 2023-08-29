@@ -13,6 +13,7 @@ struct MemoManager {
         
         for memo in memoList {
             let memoDict: [String: Any] = [
+                "id": memo.id,
                 "content": memo.content,
                 "isCompleted": memo.isCompleted,
                 "category": memo.category
@@ -43,8 +44,10 @@ struct MemoManager {
                     category = categoryValue
                 }
                 
-                let memo = Memo(content: content, isCompleted: isCompleted, category: category)
-                memoList.append(memo)
+                if let idValue = memoDict["id"] as? Int {
+                    let memo = Memo(id: idValue, content: content, isCompleted: isCompleted, category: category)
+                    memoList.append(memo)
+                }
             }
         }
         
