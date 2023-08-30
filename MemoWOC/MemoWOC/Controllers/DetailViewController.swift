@@ -20,9 +20,13 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if let memo = memo {
             detailView.detailTextView.text = memo.content
         }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -41,5 +45,9 @@ class DetailViewController: UIViewController {
             todoViewController?.memoList = MemoManager.loadMemoList()
             todoViewController?.tableView.reloadData()
         }
+    }
+    
+    @objc func dismissKeyboard() {
+        detailView.detailTextView.resignFirstResponder()
     }
 }
