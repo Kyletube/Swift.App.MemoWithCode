@@ -45,6 +45,15 @@ class MainView: UIView {
         return $0
     }(UIStackView())
     
+    let showDogButton: UIButton = {
+        $0.backgroundColor = .systemRed
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.setTitle("강아지 보기", for: .normal)
+        $0.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        return $0
+    }(UIButton(type: .custom))
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -64,11 +73,13 @@ class MainView: UIView {
         mainImageView.translatesAutoresizingMaskIntoConstraints = false
         mainTodoButton.translatesAutoresizingMaskIntoConstraints = false
         mainCompleteButton.translatesAutoresizingMaskIntoConstraints = false
+        showDogButton.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(mainStackView)
         mainStackView.addArrangedSubview(mainImageView)
         mainStackView.addArrangedSubview(mainTodoButton)
         mainStackView.addArrangedSubview(mainCompleteButton)
+        mainStackView.addArrangedSubview(showDogButton)
     }
     
     // UI제약 설정
@@ -84,6 +95,9 @@ class MainView: UIView {
             
             mainCompleteButton.heightAnchor.constraint(equalToConstant: 45),
             mainCompleteButton.widthAnchor.constraint(equalToConstant: 200),
+            
+            showDogButton.heightAnchor.constraint(equalToConstant: 45),
+            showDogButton.widthAnchor.constraint(equalToConstant: 200),
             
             mainImageView.heightAnchor.constraint(equalToConstant: 350)
         ])

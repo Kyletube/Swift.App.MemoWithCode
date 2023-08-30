@@ -19,9 +19,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mainImageLoad()
         setUpAddTarget()
         setBackBar()
-        
+    }
+    
+    func mainImageLoad() {
         if let imageURL = URL(string: "https://cdn-icons-png.flaticon.com/128/3209/3209265.png") {
             URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
                 if let error = error {
@@ -41,6 +44,7 @@ class ViewController: UIViewController {
     func setUpAddTarget() {
         mainView.mainTodoButton.addTarget(self, action: #selector(todoButtonTapped), for: .touchUpInside)
         mainView.mainCompleteButton.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
+        mainView.showDogButton.addTarget(self, action: #selector(showDogButtonTapped), for: .touchUpInside)
     }
     
     func setBackBar() {
@@ -49,7 +53,6 @@ class ViewController: UIViewController {
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
-    // 할 일 보기 버튼 눌렀을때 작동하는 함수
     @objc func todoButtonTapped() {
         let todoVC = TodoViewController()
         navigationController?.pushViewController(todoVC, animated: true)
@@ -58,5 +61,10 @@ class ViewController: UIViewController {
     @objc func completeButtonTapped() {
         let completeVC = CompleteViewController()
         navigationController?.pushViewController(completeVC, animated: true)
+    }
+    
+    @objc func showDogButtonTapped() {
+        let showDogVC = ShowDogViewController()
+        navigationController?.pushViewController(showDogVC, animated: true)
     }
 }

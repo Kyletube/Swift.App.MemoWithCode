@@ -21,6 +21,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpAddTarget()
+        
         if let memo = memo {
             detailView.detailTextView.text = memo.content
         }
@@ -49,5 +51,23 @@ class DetailViewController: UIViewController {
     
     @objc func dismissKeyboard() {
         detailView.detailTextView.resignFirstResponder()
+    }
+    
+    func setUpAddTarget() {
+        detailView.detailCategoryButton1.addTarget(self, action: #selector(category1ButtonTapped), for: .touchUpInside)
+        detailView.detailCategoryButton2.addTarget(self, action: #selector(category2ButtonTapped), for: .touchUpInside)
+        detailView.detailCategoryButton3.addTarget(self, action: #selector(category3ButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func category1ButtonTapped() {
+        
+    }
+    
+    @objc func category2ButtonTapped() {
+        
+    }
+    
+    @objc func category3ButtonTapped() {
+        
     }
 }

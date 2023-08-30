@@ -25,18 +25,39 @@ class DetailView: UIView {
         return $0
     }(UITextView())
     
-    let detailCategoryLabel: UILabel = {
-        $0.text = "카테고리"
-        $0.font = .boldSystemFont(ofSize: 24)
-        $0.textColor = .systemOrange
-        return $0
-    }(UILabel())
     
     let detailCategoryButton: UIButton = {
         $0.backgroundColor = .systemOrange
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
         $0.setTitle("카테고리 선택", for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+       return $0
+    }(UIButton())
+    
+    let detailCategoryButton1: UIButton = {
+        $0.backgroundColor = .systemRed
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.setTitle("긴 급", for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+       return $0
+    }(UIButton())
+    
+    let detailCategoryButton2: UIButton = {
+        $0.backgroundColor = .systemOrange
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.setTitle("중 요", for: .normal)
+        $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+       return $0
+    }(UIButton())
+    
+    let detailCategoryButton3: UIButton = {
+        $0.backgroundColor = .systemYellow
+        $0.layer.cornerRadius = 8
+        $0.clipsToBounds = true
+        $0.setTitle("기 본", for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
        return $0
     }(UIButton())
@@ -49,7 +70,7 @@ class DetailView: UIView {
     }(UIStackView())
     
     let detailBottomStackView: UIStackView = {
-        $0.spacing = 20
+        $0.spacing = 28
         $0.axis = .vertical
         $0.alignment = .center
         return $0
@@ -71,7 +92,6 @@ class DetailView: UIView {
         
         detailContentLabel.translatesAutoresizingMaskIntoConstraints = false
         detailTextView.translatesAutoresizingMaskIntoConstraints = false
-        detailCategoryLabel.translatesAutoresizingMaskIntoConstraints = false
         detailCategoryButton.translatesAutoresizingMaskIntoConstraints = false
         detailTopStackView.translatesAutoresizingMaskIntoConstraints = false
         detailBottomStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,8 +101,11 @@ class DetailView: UIView {
         detailTopStackView.addArrangedSubview(detailTextView)
         
         addSubview(detailBottomStackView)
-        detailBottomStackView.addArrangedSubview(detailCategoryLabel)
         detailBottomStackView.addArrangedSubview(detailCategoryButton)
+        detailBottomStackView.addArrangedSubview(detailCategoryButton1)
+        detailBottomStackView.addArrangedSubview(detailCategoryButton2)
+        detailBottomStackView.addArrangedSubview(detailCategoryButton3)
+
     }
     
     func setConstraints() {
@@ -97,10 +120,16 @@ class DetailView: UIView {
             
             detailBottomStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             detailBottomStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            detailBottomStackView.topAnchor.constraint(equalTo: detailTopStackView.bottomAnchor, constant: 32),
+            detailBottomStackView.topAnchor.constraint(equalTo: detailTopStackView.bottomAnchor, constant: 40),
             
             detailCategoryButton.widthAnchor.constraint(equalToConstant: 140),
-            detailCategoryButton.heightAnchor.constraint(equalToConstant: 40)
+            detailCategoryButton.heightAnchor.constraint(equalToConstant: 40),
+            detailCategoryButton1.widthAnchor.constraint(equalToConstant: 120),
+            detailCategoryButton1.heightAnchor.constraint(equalToConstant: 40),
+            detailCategoryButton2.widthAnchor.constraint(equalToConstant: 120),
+            detailCategoryButton2.heightAnchor.constraint(equalToConstant: 40),
+            detailCategoryButton3.widthAnchor.constraint(equalToConstant: 120),
+            detailCategoryButton3.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
 }

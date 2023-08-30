@@ -20,6 +20,7 @@
 		279042AC2A95CD33004206C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279042AA2A95CD33004206C2 /* LaunchScreen.storyboard */; };
 		279042D42A96162A004206C2 /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279042D32A96162A004206C2 /* TodoViewController.swift */; };
 		27A228C72A971F5100392AA5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A228C62A971F5100392AA5 /* MainView.swift */; };
+		27CE69012A9F53D800E752F1 /* ShowDogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CE69002A9F53D800E752F1 /* ShowDogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		279042AD2A95CD33004206C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		279042D32A96162A004206C2 /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		27A228C62A971F5100392AA5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		27CE69002A9F53D800E752F1 /* ShowDogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				279042D32A96162A004206C2 /* TodoViewController.swift */,
 				270263862A975A0C003C3A67 /* CompleteViewController.swift */,
 				272755142A986DE3003494EF /* DetailViewController.swift */,
+				27CE69002A9F53D800E752F1 /* ShowDogViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				270263852A9738EB003C3A67 /* MemoManager.swift in Sources */,
 				270263872A975A0C003C3A67 /* CompleteViewController.swift in Sources */,
 				279042D42A96162A004206C2 /* TodoViewController.swift in Sources */,
+				27CE69012A9F53D800E752F1 /* ShowDogViewController.swift in Sources */,
 				270263832A9738E1003C3A67 /* Memo.swift in Sources */,
 				272755172A986F0B003494EF /* DetailView.swift in Sources */,
 				279042A42A95CD31004206C2 /* ViewController.swift in Sources */,
