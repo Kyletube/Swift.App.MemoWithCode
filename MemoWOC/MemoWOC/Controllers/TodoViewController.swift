@@ -11,6 +11,8 @@ class TodoViewController: UIViewController {
     
     var memoList: [Memo] = []
     var currentID: Int = 0
+    var highestMemoID: Int = 0
+
     
     let tableView: UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -34,6 +36,10 @@ class TodoViewController: UIViewController {
         
         memoList = MemoManager.loadMemoList()
         tableView.reloadData()
+        
+        if let maxID = memoList.map({ $0.id }).max() {
+            highestMemoID = maxID + 1
+        }
     }
     
     func setupTableView() {
@@ -94,9 +100,9 @@ class TodoViewController: UIViewController {
     }
 
     func addMemoToList(_ memoText: String) {
-        let newMemo = Memo(id: currentID, content: memoText, isCompleted: false, category: "")
+        let newMemo = Memo(id: highestMemoID, content: memoText, isCompleted: false, category: "")
         memoList.append(newMemo)
-        currentID += 1
+        highestMemoID += 1
         tableView.reloadData()
         MemoManager.saveMemoList(memoList)
         print("id: \(newMemo.id)")
