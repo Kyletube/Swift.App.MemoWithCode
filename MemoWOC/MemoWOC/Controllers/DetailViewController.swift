@@ -11,7 +11,8 @@ class DetailViewController: UIViewController {
 
     private let detailView = DetailView()
     
-    var memo: Memo
+    var memo: Memo?
+    var todoViewController: TodoViewController?
     
     override func loadView() {
         view = detailView
@@ -19,15 +20,26 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        detailView.detailTextView.text = memo.content
+        if let memo = memo {
+            detailView.detailTextView.text = memo.content
+        }
     }
     
-    init(memo: Memo) {
-        self.memo = memo
-        super.init(nibName: nil, bundle: nil)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        updateMemo()
+        if let todoViewController = todoViewController {
+            todoViewController.memoList = MemoManager.loadMemoList()
+            todoViewController.tableView.reloadData()
+        }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func updateMemo() {
+        if var updatedMemo = memo, let updatedText = detailView.detailTextView.text {
+            updatedMemo.content = updatedText
+            MemoManager.updateMemo(updatedMemo)
+            todoViewController?.memoList = MemoManager.loadMemoList()
+            todoViewController?.tableView.reloadData()
+        }
     }
 }

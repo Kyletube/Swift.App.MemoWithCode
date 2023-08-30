@@ -29,6 +29,13 @@ class TodoViewController: UIViewController {
 //        navigationItem.leftBarButtonItem = backBarButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        memoList = MemoManager.loadMemoList()
+        tableView.reloadData()
+    }
+    
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -38,8 +45,8 @@ class TodoViewController: UIViewController {
         
         view.addSubview(tableView)
         
-        tableView.reloadData()
         memoList = MemoManager.loadMemoList()
+        tableView.reloadData()
     }
     
     func setConstraints() {
@@ -92,6 +99,7 @@ class TodoViewController: UIViewController {
         currentID += 1
         tableView.reloadData()
         MemoManager.saveMemoList(memoList)
+        print("id: \(newMemo.id)")
     }
 }
 
@@ -99,7 +107,8 @@ extension TodoViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedMemo = memoList[indexPath.row]
-        let detailViewController = DetailViewController(memo: selectedMemo)
+        let detailViewController = DetailViewController()
+        detailViewController.memo = selectedMemo
         navigationController?.pushViewController(detailViewController, animated: true)
     }
     

@@ -53,4 +53,12 @@ struct MemoManager {
         
         return memoList
     }
+    
+    static func updateMemo(_ updatedMemo: Memo) {
+        var memoList = loadMemoList()
+        if let index = memoList.firstIndex(where: { $0.id == updatedMemo.id }) {
+            memoList[index] = updatedMemo
+            saveMemoList(memoList)
+        }
+    }
 }
