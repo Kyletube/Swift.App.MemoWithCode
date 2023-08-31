@@ -18,17 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1024" translatesAutoresizingMaskIntoConstraints="NO" id="baD-aH-lTE">
-                                <rect key="frame" x="46.666666666666657" y="276" width="300" height="300"/>
+                                <rect key="frame" x="56.666666666666657" y="286" width="280" height="280"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="13f-UA-Um9"/>
-                                    <constraint firstAttribute="height" constant="300" id="fbl-re-yfm"/>
+                                    <constraint firstAttribute="width" constant="280" id="13f-UA-Um9"/>
+                                    <constraint firstAttribute="height" constant="280" id="fbl-re-yfm"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아! 맞다!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhD-hN-I33">
-                                <rect key="frame" x="46.666666666666657" y="604" width="300" height="48"/>
+                                <rect key="frame" x="162" y="594" width="69.333333333333314" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="11b-2m-h38"/>
-                                    <constraint firstAttribute="width" constant="300" id="wDQ-Pc-MDu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" systemColor="systemOrangeColor"/>

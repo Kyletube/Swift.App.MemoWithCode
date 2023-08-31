@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
     private let detailView = DetailView()
     
     var memo: Memo?

@@ -49,22 +49,26 @@ class ViewController: UIViewController {
     
     func setBackBar() {
         let backBarButtonItem = UIBarButtonItem(title: "뒤로가기", style: .plain, target: self, action: nil)
+        
         backBarButtonItem.tintColor = .systemYellow
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
     @objc func todoButtonTapped() {
         let todoVC = TodoViewController()
+        
         navigationController?.pushViewController(todoVC, animated: true)
     }
     
     @objc func completeButtonTapped() {
         let completeVC = CompleteViewController()
+        
         navigationController?.pushViewController(completeVC, animated: true)
     }
     
     @objc func showDogButtonTapped() {
         let showDogVC = ShowDogViewController()
+        
         navigationController?.pushViewController(showDogVC, animated: true)
     }
 }

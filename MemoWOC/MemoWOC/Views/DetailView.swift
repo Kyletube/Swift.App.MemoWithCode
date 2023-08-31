@@ -32,7 +32,7 @@ class DetailView: UIView {
         $0.clipsToBounds = true
         $0.setTitle("카테고리 선택", for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-       return $0
+        return $0
     }(UIButton())
     
     let detailCategoryButton1: UIButton = {
@@ -41,7 +41,7 @@ class DetailView: UIView {
         $0.clipsToBounds = true
         $0.setTitle("긴 급", for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-       return $0
+        return $0
     }(UIButton())
     
     let detailCategoryButton2: UIButton = {
@@ -50,7 +50,7 @@ class DetailView: UIView {
         $0.clipsToBounds = true
         $0.setTitle("중 요", for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-       return $0
+        return $0
     }(UIButton())
     
     let detailCategoryButton3: UIButton = {
@@ -59,7 +59,7 @@ class DetailView: UIView {
         $0.clipsToBounds = true
         $0.setTitle("기 본", for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-       return $0
+        return $0
     }(UIButton())
     
     let detailTopStackView: UIStackView = {
@@ -75,7 +75,7 @@ class DetailView: UIView {
         $0.alignment = .center
         return $0
     }(UIStackView())
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -105,7 +105,7 @@ class DetailView: UIView {
         detailBottomStackView.addArrangedSubview(detailCategoryButton1)
         detailBottomStackView.addArrangedSubview(detailCategoryButton2)
         detailBottomStackView.addArrangedSubview(detailCategoryButton3)
-
+        
     }
     
     func setConstraints() {

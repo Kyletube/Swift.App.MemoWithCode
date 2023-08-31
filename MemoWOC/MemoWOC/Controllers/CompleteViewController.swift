@@ -15,7 +15,7 @@ class CompleteViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UITableView())
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,14 +46,14 @@ class CompleteViewController: UIViewController {
 }
 
 extension CompleteViewController: UITableViewDelegate {
-
+    
 }
 
 extension CompleteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return completeMemoList.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as! MemoCell
         configureCell(cell, at: indexPath)

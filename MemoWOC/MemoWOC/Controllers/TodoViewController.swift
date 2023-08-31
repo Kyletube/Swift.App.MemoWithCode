@@ -12,24 +12,11 @@ class TodoViewController: UIViewController {
     var memoList: [Memo] = []
     var currentID: Int = 0
     var highestMemoID: Int = 0
-
     
     let tableView: UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UITableView())
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setNavBar()
-        setupTableView()
-        setConstraints()
-        
-//        let backBarButtonItem = UIBarButtonItem(title: "뒤로가기", style: .plain, target: self, action: nil)
-//        backBarButtonItem.tintColor = .systemYellow
-//        navigationItem.leftBarButtonItem = backBarButtonItem
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,6 +27,14 @@ class TodoViewController: UIViewController {
         if let maxID = memoList.map({ $0.id }).max() {
             highestMemoID = maxID + 1
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setNavBar()
+        setupTableView()
+        setConstraints()
     }
     
     func setupTableView() {
@@ -66,19 +61,38 @@ class TodoViewController: UIViewController {
     
     func setNavBar() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        
         addButton.tintColor = .systemYellow
+        
         navigationItem.rightBarButtonItem = addButton
         
         let backBarButtonItem = UIBarButtonItem(title: "뒤로가기", style: .plain, target: self, action: nil)
+        
         backBarButtonItem.tintColor = .systemYellow
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
     @objc func addButtonTapped() {
-        showAlertToAddMemo()
+        showActionSheetToAddMemo()
     }
-
-    func showAlertToAddMemo() {
+    
+    func showActionSheetToAddMemo() {
+        let actionSheet = UIAlertController(title: "메모 추가", message: "메모의 중요도를 선택 해주세요", preferredStyle: .actionSheet)
+        
+        for category in MemoCategory.allCases {
+            let categoryAction = UIAlertAction(title: category.rawValue, style: .default) { _ in
+                self.showAlertToAddMemo(withCategory: category)
+            }
+            actionSheet.addAction(categoryAction)
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        actionSheet.addAction(cancelAction)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func showAlertToAddMemo(withCategory category: MemoCategory) {
         let alertController = UIAlertController(title: "메모 추가", message: "새로운 메모를 입력하세요", preferredStyle: .alert)
         
         alertController.addTextField { textField in
@@ -87,7 +101,7 @@ class TodoViewController: UIViewController {
         
         let addAction = UIAlertAction(title: "추가", style: .default) { _ in
             if let memoText = alertController.textFields?.first?.text {
-                self.addMemoToList(memoText)
+                self.addMemoToList(memoText, withCategory: category)
             }
         }
         
@@ -98,9 +112,10 @@ class TodoViewController: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
-
-    func addMemoToList(_ memoText: String) {
-        let newMemo = Memo(id: highestMemoID, content: memoText, isCompleted: false, category: "")
+    
+    func addMemoToList(_ memoText: String, withCategory category: MemoCategory) {
+        let newMemo = Memo(id: highestMemoID, content: memoText, isCompleted: false, category: category.rawValue)
+        
         memoList.append(newMemo)
         highestMemoID += 1
         tableView.reloadData()
@@ -113,7 +128,9 @@ extension TodoViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedMemo = memoList[indexPath.row]
+        
         let detailViewController = DetailViewController()
+        
         detailViewController.memo = selectedMemo
         navigationController?.pushViewController(detailViewController, animated: true)
     }
@@ -157,9 +174,11 @@ extension TodoViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as! MemoCell
+        
         configureCell(cell, at: indexPath)
         
         let memo = memoList[indexPath.row]
+        
         updateTextAppearance(cell, withText: memo.content, isSwitchOn: memo.isCompleted)
         
         return cell
@@ -167,9 +186,11 @@ extension TodoViewController: UITableViewDataSource {
     
     func configureCell(_ cell: MemoCell, at indexPath: IndexPath) {
         let memo = memoList[indexPath.row]
+        
         cell.memoLabel.text = memo.content
         
         let switchControl = UISwitch()
+        
         switchControl.onTintColor = .systemOrange
         switchControl.isOn = memo.isCompleted
         switchControl.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)

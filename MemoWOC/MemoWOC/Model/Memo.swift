@@ -13,3 +13,9 @@ struct Memo {
     var isCompleted: Bool
     var category: String
 }
+
+enum MemoCategory: String, CaseIterable {
+    case basic = "기본"
+    case important = "중요"
+    case urgent = "긴급"
+}

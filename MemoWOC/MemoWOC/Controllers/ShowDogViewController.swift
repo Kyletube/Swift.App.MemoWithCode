@@ -8,7 +8,7 @@
 import UIKit
 
 class ShowDogViewController: UIViewController {
-
+    
     let dogImageView: UIImageView = {
         $0.contentMode = .scaleAspectFit
         return $0
@@ -20,7 +20,7 @@ class ShowDogViewController: UIViewController {
         $0.layer.cornerRadius = 8
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         $0.clipsToBounds = true
-       return $0
+        return $0
     }(UIButton(type: .custom))
     
     let loadingImage: UIImage? = UIImage(systemName: "clock.arrow.circlepath")
