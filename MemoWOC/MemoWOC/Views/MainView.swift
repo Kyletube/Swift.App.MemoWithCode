@@ -9,35 +9,29 @@ import UIKit
 
 class MainView: UIView {
     
-    // 메인화면 이미지
     let mainImageView: UIImageView = {
         $0.contentMode = .scaleAspectFit
         return $0
     }(UIImageView())
     
-    // 할 일 보기 버튼
     let mainTodoButton: UIButton = {
         $0.backgroundColor = .systemYellow
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
         $0.setTitle("할 일 보기", for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        // $0.addTarget(self, action: #selector(todoButtonTapped), for: .touchUpInside)
         return $0
     }(UIButton(type: .custom))
     
-     // 완료한 일 보기 버튼
     let mainCompleteButton: UIButton = {
         $0.backgroundColor = .orange
         $0.layer.cornerRadius = 8
         $0.clipsToBounds = true
         $0.setTitle("완료한 일 보기", for: .normal)
         $0.titleLabel?.font = .boldSystemFont(ofSize: 16)
-//        bt.addTarget(self, action: #selector(completeButtonTapped), for: .touchUpInside)
         return $0
     }(UIButton(type: .custom))
     
-    // 위의 3가지를 묶은 스택뷰
     private let mainStackView: UIStackView = {
         $0.spacing = 20
         $0.axis = .vertical
@@ -65,7 +59,6 @@ class MainView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // UI 설정
     func setUI() {
         backgroundColor = .systemGray6
         
@@ -82,7 +75,6 @@ class MainView: UIView {
         mainStackView.addArrangedSubview(showDogButton)
     }
     
-    // UI제약 설정
     func setConstraints() {
         NSLayoutConstraint.activate([
             mainStackView.centerXAnchor.constraint(equalTo: centerXAnchor),

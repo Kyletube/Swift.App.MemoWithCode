@@ -22,11 +22,15 @@ class ShowDogViewController: UIViewController {
     
     func setUI() {
         view.backgroundColor = .systemGray6
+        view.addSubview(dogImageView)
         
         dogImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-        
+            dogImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            dogImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            dogImageView.widthAnchor.constraint(equalToConstant: 100),
+            dogImageView.heightAnchor.constraint(equalToConstant: 100),
         ])
     }
 }
