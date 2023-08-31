@@ -60,14 +60,11 @@ class DetailViewController: UIViewController {
     }
     
     @objc func category1ButtonTapped() {
-        
     }
     
     @objc func category2ButtonTapped() {
-        
     }
     
     @objc func category3ButtonTapped() {
-        
     }
 }
