@@ -127,14 +127,17 @@ class TodoViewController: UIViewController {
 extension TodoViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedMemo = memoList[indexPath.row]
+        let category = MemoCategory.allCases[indexPath.section]
+        let memosInCategory = memoList.filter { $0.category == category.rawValue }
+        
+        let selectedMemo = memosInCategory[indexPath.row]
         
         let detailViewController = DetailViewController()
         
         detailViewController.memo = selectedMemo
         navigationController?.pushViewController(detailViewController, animated: true)
     }
-    
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -162,42 +165,57 @@ extension TodoViewController: UITableViewDelegate {
     }
     
     func deleteMemo(at indexPath: IndexPath) {
-        memoList.remove(at: indexPath.row)
+        let category = MemoCategory.allCases[indexPath.section]
+        let memosInCategory = memoList.filter { $0.category == category.rawValue }
+        
+        if let originalIndex = memoList.firstIndex(where: { $0.id == memosInCategory[indexPath.row].id }) {
+            memoList.remove(at: originalIndex)
+        }
+        
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
 
 extension TodoViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return MemoCategory.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return MemoCategory.allCases[section].rawValue
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memoList.count
+        let category = MemoCategory.allCases[section]
+        let memosInCategory = memoList.filter { $0.category == category.rawValue }
+        return memosInCategory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as! MemoCell
         
-        configureCell(cell, at: indexPath)
+        let category = MemoCategory.allCases[indexPath.section]
+        let memosInCategory = memoList.filter { $0.category == category.rawValue }
         
-        let memo = memoList[indexPath.row]
-        
-        updateTextAppearance(cell, withText: memo.content, isSwitchOn: memo.isCompleted)
+        configureCell(cell, withMemo: memosInCategory[indexPath.row])
         
         return cell
     }
     
-    func configureCell(_ cell: MemoCell, at indexPath: IndexPath) {
-        let memo = memoList[indexPath.row]
-        
+    func configureCell(_ cell: MemoCell, withMemo memo: Memo) {
         cell.memoLabel.text = memo.content
         
         let switchControl = UISwitch()
-        
         switchControl.onTintColor = .systemOrange
         switchControl.isOn = memo.isCompleted
         switchControl.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
         cell.accessoryView = switchControl
+        
+        updateTextAppearance(cell, withText: memo.content, isSwitchOn: memo.isCompleted)
     }
     
-    func updateTextAppearance(_ cell: UITableViewCell, withText text: String, isSwitchOn: Bool) {
+    func updateTextAppearance(_ cell: MemoCell, withText text: String, isSwitchOn: Bool) {
         let attributeString = NSMutableAttributedString(string: text)
         
         if isSwitchOn {
@@ -206,15 +224,23 @@ extension TodoViewController: UITableViewDataSource {
             attributeString.removeAttribute(.strikethroughStyle, range: NSMakeRange(0, attributeString.length))
         }
         
-        cell.textLabel?.attributedText = attributeString
+        cell.memoLabel.attributedText = attributeString
     }
+
     
     @objc func switchValueChanged(_ sender: UISwitch) {
         if let cell = sender.superview as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
-            memoList[indexPath.row].isCompleted = sender.isOn
-            updateTextAppearance(cell, withText: memoList[indexPath.row].content, isSwitchOn: sender.isOn)
+            let category = MemoCategory.allCases[indexPath.section]
+            var memosInCategory = memoList.filter { $0.category == category.rawValue }
+            memosInCategory[indexPath.row].isCompleted = sender.isOn
+            
+            if let originalIndex = memoList.firstIndex(where: { $0.id == memosInCategory[indexPath.row].id }) {
+                memoList[originalIndex].isCompleted = sender.isOn
+            }
+            
+            updateTextAppearance(cell as! MemoCell, withText: memosInCategory[indexPath.row].content, isSwitchOn: sender.isOn)
             MemoManager.saveMemoList(memoList)
-            tableView.reloadRows(at: [indexPath], with: .fade)
         }
     }
+
 }

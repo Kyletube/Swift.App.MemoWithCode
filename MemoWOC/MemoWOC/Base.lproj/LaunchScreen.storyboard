@@ -24,8 +24,8 @@
                                     <constraint firstAttribute="height" constant="280" id="fbl-re-yfm"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아! 맞다!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhD-hN-I33">
-                                <rect key="frame" x="162" y="594" width="69.333333333333314" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나..뭐해야 하더라?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhD-hN-I33">
+                                <rect key="frame" x="122.33333333333333" y="594" width="148.33333333333337" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="11b-2m-h38"/>
                                 </constraints>

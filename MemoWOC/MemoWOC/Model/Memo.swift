@@ -15,7 +15,7 @@ struct Memo {
 }
 
 enum MemoCategory: String, CaseIterable {
-    case basic = "기본"
-    case important = "중요"
-    case urgent = "긴급"
+    case basic = "기 본"
+    case important = "중 요"
+    case urgent = "긴 급"
 }
