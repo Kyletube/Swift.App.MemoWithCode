@@ -13,6 +13,7 @@
 		270263872A975A0C003C3A67 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270263862A975A0C003C3A67 /* CompleteViewController.swift */; };
 		272755152A986DE3003494EF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272755142A986DE3003494EF /* DetailViewController.swift */; };
 		272755172A986F0B003494EF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272755162A986F0B003494EF /* DetailView.swift */; };
+		274991862AA8982300F77C5C /* DogImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274991852AA8982300F77C5C /* DogImageService.swift */; };
 		279042A02A95CD31004206C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790429F2A95CD31004206C2 /* AppDelegate.swift */; };
 		279042A22A95CD31004206C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279042A12A95CD31004206C2 /* SceneDelegate.swift */; };
 		279042A42A95CD31004206C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279042A32A95CD31004206C2 /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 		270263862A975A0C003C3A67 /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
 		272755142A986DE3003494EF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		272755162A986F0B003494EF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		274991852AA8982300F77C5C /* DogImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogImageService.swift; sourceTree = "<group>"; };
 		2790429C2A95CD31004206C2 /* MemoWOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoWOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2790429F2A95CD31004206C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		279042A12A95CD31004206C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				270263822A9738E1003C3A67 /* Memo.swift */,
 				270263842A9738EB003C3A67 /* MemoManager.swift */,
+				274991852AA8982300F77C5C /* DogImageService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				270263812A973561003C3A67 /* MemoCell.swift in Sources */,
+				274991862AA8982300F77C5C /* DogImageService.swift in Sources */,
 				270263852A9738EB003C3A67 /* MemoManager.swift in Sources */,
 				270263872A975A0C003C3A67 /* CompleteViewController.swift in Sources */,
 				279042D42A96162A004206C2 /* TodoViewController.swift in Sources */,
